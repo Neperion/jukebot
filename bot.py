@@ -9,7 +9,10 @@ from discord.ext import commands
 from typing import Optional
 
 dotenv.load_dotenv()
-devuser_id = int(os.getenv('DEVID'))
+if DEVID := os.getenv('DEVID') is not None:
+    devuser_id = int(DEVID)
+else:
+    devuser_id = -1
 intents = discord.Intents.default()
 intents.members = True # necessary for bot.get_user()
 bot = commands.Bot('!', intents=intents)
