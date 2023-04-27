@@ -6,7 +6,6 @@ import channel
 import discord
 import interactions
 from discord.ext import commands
-from typing import Optional
 
 dotenv.load_dotenv()
 if DEVID := os.getenv('DEVID') is not None:
@@ -17,7 +16,6 @@ intents = discord.Intents.default()
 intents.members = True # necessary for bot.get_user()
 bot = commands.Bot('!', intents=intents)
 sessions: dict[int, music.Session] = {}
-last_play: Optional[discord.Interaction] = None
 
 
 @bot.event
