@@ -75,3 +75,4 @@ class Session:
         if voice.is_playing() or voice.is_paused():
             self.frozen = True
             voice.stop()
+        self.song_info = None
