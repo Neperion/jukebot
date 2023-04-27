@@ -8,7 +8,7 @@ import interactions
 from discord.ext import commands
 
 dotenv.load_dotenv()
-if DEVID := os.getenv('DEVID') is not None:
+if (DEVID := os.getenv('DEVID')) is not None:
     devuser_id = int(DEVID)
 else:
     devuser_id = -1
