@@ -90,7 +90,8 @@ async def play(interaction: discord.Interaction, url: str, skip: bool = False):
             channel.Error('Invalid URL.')
         )
         return
-    if (voice := channel.get_voice(interaction.guild)) is None:
+    if (voice := channel.get_voice(interaction.guild)) is None \
+    or voice.channel != interaction.channel:
         try:
             voice = await channel.connect(member_channel)
         except channel.Error as error:
