@@ -61,7 +61,10 @@ async def leave(interaction: discord.Interaction):
         if (voice := channel.get_voice(member_channel.guild)) is not None:
             session.stop(voice)
         if session.message is not None:
-            await session.message.edit(view=None)
+            try:
+                await session.message.edit(view=None)
+            except discord.HTTPException:
+                pass
     try:
         await channel.disconnect(member_channel)
     except channel.Error as error:
@@ -109,7 +112,10 @@ async def play(interaction: discord.Interaction, url: str, skip: bool = False):
         silent=True
     )
     if session.message is not None:
-        await session.message.edit(view=None)
+        try:
+            await session.message.edit(view=None)
+        except discord.HTTPException:
+            pass
     session.message = await interaction.original_response()
 
 
