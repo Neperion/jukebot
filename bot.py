@@ -121,7 +121,7 @@ async def play(interaction: discord.Interaction, url: str, skip: bool = False):
 
 class View(discord.ui.View):
     def __init__(self, voice: discord.VoiceClient, session: music.Session):
-        super().__init__()
+        super().__init__(timeout=None)
         if session.looping:
             self.loop.style = discord.ButtonStyle.primary
         if voice.is_paused():
