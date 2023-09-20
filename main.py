@@ -1,8 +1,10 @@
 import os
 import bot
+import dotenv
 
 
 def main():
+    dotenv.load_dotenv()
     bot.bot.run(os.getenv('TOKEN'))
 
 

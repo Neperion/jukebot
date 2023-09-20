@@ -1,17 +1,10 @@
-import os
 import error
 import music
-import dotenv
 import channel
 import discord
 import interactions
 from discord.ext import commands
 
-dotenv.load_dotenv()
-if (DEVID := os.getenv('DEVID')) is not None:
-    devuser_id = int(DEVID)
-else:
-    devuser_id = -1
 intents = discord.Intents.default()
 intents.members = True # necessary for bot.get_user()
 bot = commands.Bot('!', intents=intents)
@@ -20,7 +13,7 @@ sessions: dict[int, music.Session] = {}
 
 @bot.event
 async def on_ready():
-    dev = bot.get_user(devuser_id)
+    dev = bot.get_user(-1 if bot.owner_id is None else bot.owner_id)
     on_error = error.on_error(dev)
     join.error(on_error)
     leave.error(on_error)
